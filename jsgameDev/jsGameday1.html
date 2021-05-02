@@ -9,7 +9,25 @@
         *{ margin:0; padding: 0;}
         .hide{ display: none;}
         .car{ width: 50px; height: 70px; background: red; 
-        position: absolute; left: 50px; bottom: 320px;}
+        position: absolute; bottom: 120px;}
+
+        .lines{
+            width: 10px;
+            height: 100px;
+            background: white;
+            position: absolute;
+            margin-left: 195px;
+        }
+
+        .gameArea{
+            width: 400px;
+            height: 100vh;
+            background: #2d3436;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
     </style>
 </head>
 <body>
@@ -55,14 +73,15 @@
 
 function gamePlay(){
     console.log("hey i m cliked");
-let car = document.querySelector('.car');
-
+    let car = document.querySelector('.car');
+    let road = gameArea.getBoundingClientRect();
+    console.log(road);
     if (player.start){
 
-        if(keys.ArrowUp) {player.y-= player.speed}
-        if(keys.ArrowDown){player.y+= player.speed}
-        if(keys.ArrowLeft) {player.x-= player.speed}
-        if(keys.ArrowRight){player.x+= player.speed}
+        if(keys.ArrowUp && player.y > (road.top + 150)) {player.y-= player.speed}
+        if(keys.ArrowDown && player.y < (road.bottom - 70)){player.y+= player.speed}
+        if(keys.ArrowLeft && player.x > 0) {player.x-= player.speed}
+        if(keys.ArrowRight && player.x < (road.width - 50)){player.x+= player.speed}
 
         car.style.top = player.y + "px";
         car.style.left = player.x + "px";
@@ -77,6 +96,14 @@ let car = document.querySelector('.car');
 
         player.start = true;
         window.requestAnimationFrame(gamePlay);
+
+        //roadlines
+       for(x=0; x<7; x++){
+        let roadLine = document.createElement('div');
+        roadLine.setAttribute('class', 'lines');
+        roadLine.style.top = (x*150) + "px";
+        gameArea.appendChild(roadLine);
+       }
 
         let car = document.createElement('div');
         car.setAttribute('class', 'car');
