@@ -19,6 +19,14 @@
             margin-left: 195px;
         }
 
+        .enemy{
+            width: 50px;
+            height: 70px;
+            background: blueviolet; 
+            position: absolute; 
+            bottom: 120px;
+        }
+
         .gameArea{
             width: 400px;
             height: 100vh;
@@ -61,22 +69,68 @@
         e.preventDefault();
         keys[e.key] = true;
         // console.log(e.key); 
-        console.log(keys);
+        // console.log(keys);
     }
 
     function keyUp(e){
         e.preventDefault();
         keys[e.key] = false;
         // console.log(e.key);
-        console.log(keys);
+        // console.log(keys);
     }
 
+    //.............collision between cars funtion...............
+    function isCollide(a,b){
+        aRect = a.getBoundingClientRect();
+        bRect = b.getBoundingClientRect();
+
+        return !((aRect.bottom < bRect.top) || (aRect.top > bRect.bottom) || (aRect.right < bRect.left) || (aRect.left > bRect.right))
+    }
+
+    function moveLines(){
+        let lines = document.querySelectorAll('.lines');
+
+        lines.forEach(function(item) {
+
+            if(item.y >= 900){
+                item.y -= 1050;
+            }
+
+            item.y += player.speed;
+            item.style.top = item.y + "px";
+        })
+    }
+
+    //moveCars funtion.................
+    function moveEnemy(car){
+        let enemy = document.querySelectorAll('.enemy');
+
+        enemy.forEach(function(item) {
+
+            if(isCollide(car,item)){
+                console.log("Boom Hit");
+            }
+
+            if(item.y >= 1000){
+                item.y = -500;
+                item.style.left = Math.floor(Math.random()*350) + "px"
+            }
+
+            item.y += player.speed;
+            item.style.top = item.y + "px";
+        })
+    }
+
+
 function gamePlay(){
-    console.log("hey i m cliked");
+    // console.log("hey i m cliked");
     let car = document.querySelector('.car');
     let road = gameArea.getBoundingClientRect();
     console.log(road);
     if (player.start){
+        
+        moveLines();
+        moveEnemy(car);
 
         if(keys.ArrowUp && player.y > (road.top + 150)) {player.y-= player.speed}
         if(keys.ArrowDown && player.y < (road.bottom - 70)){player.y+= player.speed}
@@ -101,7 +155,8 @@ function gamePlay(){
        for(x=0; x<7; x++){
         let roadLine = document.createElement('div');
         roadLine.setAttribute('class', 'lines');
-        roadLine.style.top = (x*150) + "px";
+        roadLine.y = (x*150);
+        roadLine.style.top = roadLine.y + "px";
         gameArea.appendChild(roadLine);
        }
 
@@ -113,8 +168,18 @@ function gamePlay(){
         player.x = car.offsetLeft;
         player.y = car.offsetTop
 
-        console.log("top position"+ car.offsetTop);
-        console.log("left position"+  car.offsetLeft);     
+        // console.log("top position"+ car.offsetTop);
+        // console.log("left position"+  car.offsetLeft);     
+
+        for(x=0; x<5; x++){
+        let enemyCar = document.createElement('div');
+        enemyCar.setAttribute('class', 'enemy');
+        enemyCar.y = ((x+1) * 350)* -1;
+        enemyCar.style.top = enemyCar.y + "px";
+        enemyCar.style.background = 'blue';
+        enemyCar.style.left = Math.floor(Math.random()*350) + "px"
+        gameArea.appendChild(enemyCar);
+       }
 
     }
 </script>
