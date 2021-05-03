@@ -1,0 +1,91 @@
+*{ margin:0; padding: 0;}
+        .hide{ display: none;}
+
+        .carGame{
+            width: 100%;
+            height: 100vh;
+            /* background-image: url(https://media.indiedb.com/images/games/1/22/21215/DF_Path_NoRorik.jpg); */
+            /* background-image: url(https://img.itch.zone/aW1nLzE3MjgzMzQuanBn/original/w6BZFE.jpg); */
+            background-image: url(https://media.istockphoto.com/photos/retro-video-game-background-3d-illustration-picture-id1146551901?k=6&m=1146551901&s=612x612&w=0&h=oJsvgo3c_KWaW2cmub0Yf3fgJj5CkSUVXSNRTSa-MiE=);
+            background-repeat: repeat;
+            background-size: 100%;
+        }
+
+        .car { width: 50px;
+            height: 90px;
+            /* background-color: red;  */
+            position: absolute;
+            bottom: 120px;
+            background-image: url(https://pngimage.net/wp-content/uploads/2018/05/coches-desde-arriba-png.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            
+            }
+
+        .lines{
+            width: 10px;
+            height: 100px;
+            background: white;
+            position: absolute;
+            margin-left: 195px;
+        }
+
+        .enemy{
+            width: 50px;
+            height: 90px;
+            position: absolute; 
+            bottom: 120px;
+            border-radius: 2rem;
+            border: 4px solid white;
+            /* background-image: url(https://i.pinimg.com/originals/4c/03/7f/4c037f9eebcc9e5b66863023999b11ae.jpg); */
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .gameArea{
+            width: 400px;
+            height: 100vh;
+            background: #2d3436;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+            border-right: 10px dashed #c8d6e5;
+            border-left: 10px dashed #c8d6e5;
+        }
+
+        .score{
+            position: absolute;
+            top: 15px;
+            left: 40px;
+            background: cadetblue;
+            width: 300px;
+            line-height: 70px;
+            text-align: center;
+            color: cornsilk;
+            font-size: 1.5rem;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            box-shadow: 0 5px 5px #777;
+        }
+
+        .startScreen{
+            position: absolute;
+            background-color: rgb(245, 121, 162);
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: whitesmoke;
+            z-index: 1;
+            text-align: center;
+            border: 3px solid #140a0a;
+            padding: 15px;
+            margin: auto;
+            width: 50%;
+            cursor: pointer;
+            font-family: sans-serif;
+            letter-spacing: 5;
+            font-size: 20px;
+            word-spacing: 3;
+            line-height: 30px;
+            text-transform: uppercase;
+            box-shadow: 0 5px 5px #777;
+        }
